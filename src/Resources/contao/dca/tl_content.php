@@ -12,7 +12,7 @@
  * @filesource
  */
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['twitch'] = '{type_legend},type,headline;{source_legend},twitch;{player_legend},playerSize,twitchOptions,playerStart,playerStop,playerCaption,playerAspect;{splash_legend},splashImage;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop',
+$GLOBALS['TL_DCA']['tl_content']['palettes']['twitch'] = '{type_legend},type,headline;{source_legend},twitch;{player_legend},playerSize,twitchOptions,playerStart,playerStop,playerCaption,playerAspect;{splash_legend},splashImage;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['twitch'] = array
 (
