@@ -19,21 +19,25 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['twitch'] = array
 	'exclude'                 => true,
 	'search'                  => true,
 	'inputType'               => 'text',
-	'eval'                    => array('mandatory'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50'),
-	'save_callback' => array
+	'eval'                    => array
 	(
-		array('tl_content', 'extractTwitchId')
+		'mandatory'           => true, 
+		'decodeEntities'      => true,
+		'tl_class'            => 'w50'
 	),
+	//'save_callback'           => array
+	//(
+	//	array('tl_content_twitch', 'extractTwitchId')
+	//),
 	'sql'                     => "varchar(16) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['twitchOptions'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['playerOptions'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['twitchOptions'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'options'                 => array('twitch_autoplay', 'twitch_controls', 'twitch_cc_load_policy', 'twitch_fs', 'twitch_hl', 'twitch_iv_load_policy', 'twitch_modestbranding', 'twitch_rel', 'twitch_showinfo', 'twitch_nocookie'),
-	'reference'               => &$GLOBALS['TL_LANG']['tl_content'],
+	'options'                 => $GLOBALS['TL_LANG']['tl_content']['twitchOptionsItems'],
 	'eval'                    => array('multiple'=>true, 'tl_class'=>'clr'),
 	'sql'                     => "text NULL"
 );
@@ -60,15 +64,15 @@ class tl_content_twich extends Backend
 	 */
 	public function extractTwitchId($varValue, DataContainer $dc)
 	{
-		if ($dc->activeRecord->twitch != $varValue)
-		{
-			$matches = array();
-
-			if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $varValue, $matches))
-			{
-				$varValue = $matches[1];
-			}
-		}
+		//if ($dc->activeRecord->twitch != $varValue)
+		//{
+		//	$matches = array();
+        //
+		//	if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $varValue, $matches))
+		//	{
+		//		$varValue = $matches[1];
+		//	}
+		//}
 
 		return $varValue;
 	}

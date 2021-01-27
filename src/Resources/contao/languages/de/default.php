@@ -2,5 +2,4 @@
 /**
  * Content Elements
  */
-$GLOBALS['TL_LANG']['CTE']['references'][0] = 'Quellennachweis';
-$GLOBALS['TL_LANG']['CTE']['references'][1] = 'Erstellt einen Quellennachweis';
+$GLOBALS['TL_LANG']['CTE']['twitch'] = array('Twitch', 'Ein Twitch-Video einbinden');

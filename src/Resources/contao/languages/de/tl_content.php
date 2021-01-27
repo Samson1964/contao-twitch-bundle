@@ -10,12 +10,19 @@
  * Content elements
  */
 
-$GLOBALS['TL_LANG']['tl_content']['options_legend'] = 'Einstellungen';
-$GLOBALS['TL_LANG']['tl_content']['references'] = array('Quellen', 'Quellen');
-$GLOBALS['TL_LANG']['tl_content']['references_active'] = array('Aktiv', '');
-$GLOBALS['TL_LANG']['tl_content']['references_text'] = array('Text', '');
-$GLOBALS['TL_LANG']['tl_content']['references_url'] = array('URL', '');
-$GLOBALS['TL_LANG']['tl_content']['references_target'] = array('Neues Fenster', '');
+$GLOBALS['TL_LANG']['tl_content']['twitch'] = array('Twitch-ID', 'Bitte geben Sie die Twitch-Video-ID ein (z.B. 88536246).');
+$GLOBALS['TL_LANG']['tl_content']['twitchOptions'] = array('Player-Optionen', 'Hier können Sie die Player-Optionen auswählen.');
 
-$GLOBALS['TL_LANG']['tl_content']['references_headline_singular'] = 'Quelle';
-$GLOBALS['TL_LANG']['tl_content']['references_headline_plural'] = 'Quellen';
+$GLOBALS['TL_LANG']['tl_content']['twitchOptionsItems'] = array
+(
+	'twitch_autoplay'       => 'Automatisch abspielen',
+	'twitch_controls'       => 'Steuerelemente verbergen',
+	'twitch_cc_load_policy' => 'Untertitel standardmäßig anzeigen',
+	'twitch_fs'             => 'Den Fullscreen-Button ausblenden',
+	'twitch_hl'             => 'Die Contao-Seitensprache verwenden',
+	'twitch_iv_load_policy' => 'Anmerkungen verstecken',
+	'twitch_modestbranding' => 'Das Twitch-Logo ausblenden',
+	'twitch_rel'            => 'Keine ähnlichen Videos am Ende zeigen',
+	'twitch_showinfo'       => 'Die Linkleiste in der Vorschau ausblenden',
+	'twitch_nocookie'       => 'Die youtube-nocookie.com-Domain verwenden'
+);

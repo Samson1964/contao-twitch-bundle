@@ -2,6 +2,10 @@
 
 <?php $this->block('content'); ?>
 
-hallo
+<?php
+	$GLOBALS['TL_JAVASCRIPT'][] = 'https://player.twitch.tv/js/embed/v1.js';
+?>
+
+<?= $this->twitchcontainer ?>
 
 <?php $this->endblock(); ?> 

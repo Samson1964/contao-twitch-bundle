@@ -29,8 +29,11 @@ class Twitch extends \ContentElement
 
 	public function generate()
 	{
-		$this->referenzen = unserialize($this->referenzen);
-		return parent::generate(); 
+		if($this->twitchOptions) $this->twitchOptions = unserialize($this->twitchOptions);
+		$this->twitchOptions = array();
+
+		$this->playerSize = unserialize($this->playerSize);
+		return parent::generate();
 	}
 
 	/**
@@ -38,22 +41,70 @@ class Twitch extends \ContentElement
 	 */
 	protected function compile()
 	{
-		$daten = array();
-		$i = 0;
-		foreach($this->referenzen as $item)
+
+		// Zufallszahl für Container-ID ermitteln
+		$container_id = mt_rand();
+		// Reponsive-Ratio übergeben, wenn gewünscht
+		if($this->playerAspect)
 		{
-			if($item['active'])
-			{
-				$i++;
-				$daten[] = array
-				(
-					'nummer' => $i,
-					'text'   => $item['url'] ? '<a href="'.$item['url'].'"'.($item['target'] ? ' target="_blank"' : '').'>'.$item['text'].'</a>' : $item['text']
-				);
-			}
+			$responsive = 'responsive ratio-'.str_replace(':', '', $this->playerAspect);
+		}
+		else
+		{
+			$responsive = '';
 		}
 
-		$this->Template->Twitch = $daten;
-		$this->Template->headline = $this->headline ? $this->headline : ($i == 1 ? $GLOBALS['TL_LANG']['tl_content']['Twitch_headline_singular'] :  $GLOBALS['TL_LANG']['tl_content']['Twitch_headline_plural']);
+		$content = '';
+		//$content .= '<script src= "https://player.twitch.tv/js/embed/v1.js"></script>'."\n";
+		$content .= '<div class="'.$responsive.'" id="twitch_'.$container_id.'"></div>'."\n";
+		$content .= '<script type="text/javascript">'."\n";
+		$content .= '  var options = {'."\n";
+		// Breite setzen
+		if($this->playerSize[0])
+		{
+			$content .= '    width: '.$this->playerSize[0].','."\n";
+		}
+		else
+		{
+			$content .= '    width: 400,'."\n";
+		}
+		// Höhe setzen
+		if($this->playerSize[1])
+		{
+			$content .= '    height: '.$this->playerSize[1].','."\n";
+		}
+		else
+		{
+			$content .= '    height: 300,'."\n";
+		}
+		$content .= '    autoplay: '.(in_array('twitch_autoplay', $this->twitchOptions) ? 'true' : 'false').','."\n";
+		$content .= '    video: "'.$this->twitch.'",'."\n";
+		// Startzeit setzen
+		if($this->playerStart > 0)
+		{
+			$startzeit = self::Zeitrechner($this->playerStart);
+			$content .= '    time: "'.$startzeit.'",'."\n";
+		}
+		$content .= '    parent: ["'.$_SERVER['SERVER_NAME'].'"]'."\n";
+		$content .= '  };'."\n";
+		$content .= '  var player = new Twitch.Player("twitch_'.$container_id.'", options);'."\n";
+		$content .= '  player.setVolume(0.5);'."\n";
+		$content .= '</script>'."\n";
+
+		$this->Template->twitchcontainer = $content;
+
+	}
+
+	/**
+	 * Rechnet die Sekunden in einen String im Twitch-Format um: 0h0m0s
+	 */
+	function Zeitrechner($sekunden)
+	{
+
+		$sek = $sekunden % 60;
+		$min = (($sekunden - $sek) / 60) % 60;
+		$std = (((($sekunden - $sek) /60)- $min) / 60) % 24;
+
+		return $std.'h'.$min.'m'.$sek.'s';
 	}
 }
