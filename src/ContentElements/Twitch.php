@@ -27,12 +27,35 @@ class Twitch extends \ContentElement
 	 */
 	protected $strTemplate = 'ce_twitch';
 
+	protected $twitchChannel = false; // Twitch-ID ist kein Kanalname
+
 	public function generate()
 	{
 		if($this->twitchOptions) $this->twitchOptions = unserialize($this->twitchOptions);
 		$this->twitchOptions = array();
 
 		$this->playerSize = unserialize($this->playerSize);
+
+		// Kanalname übergeben?
+		if(!is_numeric($this->twitch)) $this->twitchChannel = true; // Ja!
+
+		$request = \System::getContainer()->get('request_stack')->getCurrentRequest();
+
+		if($request && \System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+		{
+			if($this->twitchChannel)
+				$return = '<p><a href="https://www.twitch.tv/' . $this->twitch . '" target="_blank" rel="noreferrer noopener">www.twitch.tv/' . $this->twitch . '</a></p>';
+			else
+				$return = '<p><a href="https://www.twitch.tv/videos/' . $this->twitch . '" target="_blank" rel="noreferrer noopener">www.twitch.tv/videos/' . $this->twitch . '</a></p>';
+
+			if ($this->headline)
+			{
+				$return = '<' . $this->hl . '>' . $this->headline . '</' . $this->hl . '>' . $return;
+			}
+
+			return $return;
+		}
+
 		return parent::generate();
 	}
 
@@ -78,7 +101,10 @@ class Twitch extends \ContentElement
 			$content .= '    height: 300,'."\n";
 		}
 		$content .= '    autoplay: '.(in_array('twitch_autoplay', $this->twitchOptions) ? 'true' : 'false').','."\n";
-		$content .= '    video: "'.$this->twitch.'",'."\n";
+
+		if($this->twitchChannel) $content .= '    channel: "'.$this->twitch.'",'."\n";
+		else $content .= '    video: "'.$this->twitch.'",'."\n";
+
 		// Startzeit setzen
 		if($this->playerStart > 0)
 		{

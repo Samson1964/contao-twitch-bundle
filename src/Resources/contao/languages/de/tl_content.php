@@ -10,7 +10,7 @@
  * Content elements
  */
 
-$GLOBALS['TL_LANG']['tl_content']['twitch'] = array('Twitch-ID', 'Bitte geben Sie die Twitch-Video-ID ein (z.B. 88536246).');
+$GLOBALS['TL_LANG']['tl_content']['twitch'] = array('Twitch-ID', 'Bitte geben Sie hier die Twitch-Video-ID ein (z.B. 88536246) oder den Kanalnamen (für Live-Übertragungen) ein.');
 $GLOBALS['TL_LANG']['tl_content']['twitchOptions'] = array('Player-Optionen', 'Hier können Sie die Player-Optionen auswählen.');
 
 $GLOBALS['TL_LANG']['tl_content']['twitchOptionsItems'] = array

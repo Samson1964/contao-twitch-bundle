@@ -21,15 +21,12 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['twitch'] = array
 	'inputType'               => 'text',
 	'eval'                    => array
 	(
-		'mandatory'           => true, 
+		'mandatory'           => false,
+		'maxlength'           => 40,
 		'decodeEntities'      => true,
 		'tl_class'            => 'w50'
 	),
-	//'save_callback'           => array
-	//(
-	//	array('tl_content_twitch', 'extractTwitchId')
-	//),
-	'sql'                     => "varchar(16) NOT NULL default ''"
+	'sql'                     => "varchar(40) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['twitchOptions'] = array
@@ -52,7 +49,7 @@ class tl_content_twich extends Backend
 		parent::__construct();
 		$this->import(BackendUser::class, 'User');
 	}
-		
+
 
 	/**
 	 * Extract the YouTube ID from an URL
