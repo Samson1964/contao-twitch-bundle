@@ -1,5 +1,9 @@
 # Twitch-Bundle Changelog
 
+## Version 1.1.1 (2021-07-25)
+
+* Fix: CSS-Klasse twitch für DIV-Container iframe gesetzt
+
 ## Version 1.1.0 (2021-06-23)
 
 * Change: tl_content.twitch Zeichenanzahl von 16 auf 40 erweitert um Kanalnamen eintragen zu können

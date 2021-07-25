@@ -79,7 +79,7 @@ class Twitch extends \ContentElement
 
 		$content = '';
 		//$content .= '<script src= "https://player.twitch.tv/js/embed/v1.js"></script>'."\n";
-		$content .= '<div class="'.$responsive.'" id="twitch_'.$container_id.'"></div>'."\n";
+		$content .= '<div class="twitch '.$responsive.'" id="twitch_'.$container_id.'"></div>'."\n";
 		$content .= '<script type="text/javascript">'."\n";
 		$content .= '  var options = {'."\n";
 		// Breite setzen
