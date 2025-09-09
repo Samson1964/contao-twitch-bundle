@@ -1,5 +1,9 @@
 # Twitch-Bundle Changelog
 
+## Version 2.0.0 (2025-09-09)
+
+* Add: Abhängigkeit PHP 8
+
 ## Version 1.1.1 (2021-07-25)
 
 * Fix: CSS-Klasse twitch für DIV-Container iframe gesetzt
