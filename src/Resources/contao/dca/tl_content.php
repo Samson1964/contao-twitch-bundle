@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['twitchOptions'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['twitchOptions'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'options'                 => $GLOBALS['TL_LANG']['tl_content']['twitchOptionsItems'],
+	'options'                 => &$GLOBALS['TL_LANG']['tl_content']['twitchOptionsItems'],
 	'eval'                    => array('multiple'=>true, 'tl_class'=>'clr'),
 	'sql'                     => "text NULL"
 );

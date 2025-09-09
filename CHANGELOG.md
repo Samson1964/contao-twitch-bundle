@@ -1,5 +1,9 @@
 # Twitch-Bundle Changelog
 
+## Version 2.0.1 (2025-09-09)
+
+* Fix: Warning: Undefined array key "twitchOptionsItems" ["exception" => ErrorException { …}]
+
 ## Version 2.0.0 (2025-09-09)
 
 * Add: Abhängigkeit PHP 8
